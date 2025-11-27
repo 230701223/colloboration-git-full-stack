@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>YummyExpress - Food Delivery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f7f7f7;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    /* Navbar */
+    header {
+      background: #ff4b2b;
+      color: #fff;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+      padding: 10px 20px;
+    }
+
+    .hero-text h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .hero-text p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .btn-primary {
+      background: #ff4b2b;
+      color: #fff;
+      border: none;
+      padding: 10px 25px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 25px;
+      transition: 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: #e53b1d;
+    }
+
+    .hero-image {
+      flex: 1 1 250px;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    .hero-image div {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff9966, #ff5e62);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px 20px 20px;
+    }
+
+    section h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+    }
+
+    section p {
+      margin-bottom: 10px;
+      color: #555;
+    }
+
+    /* Menu cards */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card h3 {
+      margin-bottom: 5px;
+    }
+
+    .price {
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .card button {
+      align-self: flex-start;
+      padding: 6px 15px;
+      font-size: 14px;
+      border-radius: 20px;
+      border: none;
+      background: #ff4b2b;
+      color: #fff;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .card button:hover {
+      background: #e53b1d;
+    }
+
+    /* How it Works */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .step {
+      flex: 1 1 220px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .step span {
+      font-size: 22px;
+      margin-right: 8px;
+    }
+
+    /* Contact form */
+    form {
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      max-width: 500px;
+    }
+
+    form label {
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 14px;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }zx
+
+    form button {
+      margin-top: 10px;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4b2b;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+    }
+d
+    form button:hover {
+      background: #e53b1d;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 13px;
+      background: #222;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .hero-text h1 {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header>
+    <div class="nav">
+      <div class="logo">YummyExpress</div>
+      <nav>
+        <a href="#menu">Menu</a>
+        <a href="#how">How it works</a>
+        <a href="#contact">Contact</a>xxx
+w      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Hot & Fresh Food, Delivered Fast!</h1>
+      <p>Order your favourite meals from nearby restaurants and get them delivered to your doorstep in minutes.</p>
+      <button class="btn-primary" onclick="alert('This is a demo. Add your ordering logic here!')">
+        Order Now
+      </button>
+    </div>
+    <div class="hero-image">
+      <div>🍔</div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu">
+    <h2>Popular Dishes</h2>
+    <p>Choose from our most loved dishes.</p>
+    <div class="menu-grid">
+      <div class="card">
+        <h3>Margherita Pizza</h3>
+        <p>Classic cheese pizza with fresh basil and tomato sauce.</p>
+        <p class="price">₹249</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="card">
+        <h3>Veg Burger</h3>
+        <p>Loaded veg patty with crispy fries on the side.</p>
+        <p class="price">₹149</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="card">
+        <h3>Paneer Biryani</h3>
+        <p>Flavourful biryani with soft paneer cubes and raita.</p>
+        <p class="price">₹199</p>
+        <button>Add to Cart</button>
+      </div>
+      <div class="card">
+        <h3>Cold Coffee</h3>
+        <p>Chilled coffee with ice cream on top.</p>
+        <p class="price">₹99</p>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <span>1️⃣</span><strong>Browse restaurants</strong>
+        <p>Select from hundreds of restaurants available in your area.</p>
+      </div>
+      <div class="step">
+        <span>2️⃣</span><strong>Place your order</strong>
+        <p>Add your favourite dishes to the cart and confirm the order.</p>
+      </div>
+      <div class="step">
+        <span>3️⃣</span><strong>Track delivery</strong>
+        <p>Watch your delivery partner bring your food in real-time.</p>
+      </div>
+      <div class="step">
+        <span>4️⃣</span><strong>Enjoy your meal</strong>
+        <p>Sit back, relax, and enjoy hot, tasty food at home.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Have any questions or want to partner with us? Send a message.</p>
+    <form onsubmit="event.preventDefault(); alert('Thank you! This is a demo contact form.');">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Your name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="you@example.com" required />
+
+      <label for="msg">Message</label>
+      <textarea id="msg" placeholder="Type your message..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 YummyExpress. All rights reserved.
+  </footer>
+
+</body>
+</html>
