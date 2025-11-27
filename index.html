@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Library Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+      color: #222;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #1e3a8a;
+      color: #fff;
+      padding: 12px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar h1 {
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a {
+      color: #dbeafe;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      color: #1e3a8a;
+    }
+
+    .top-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 16px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      flex: 1 1 320px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 7px 9px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      border: 1px solid #d1d5db;
+      font-size: 13px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #1e3a8a;
+      box-shadow: 0 0 0 1px #1d4ed8;
+    }
+
+    .btn {
+      background: #1e3a8a;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 14px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .btn.secondary {
+      background: #6b7280;
+    }
+
+    .btn.small {
+      padding: 4px 9px;
+      font-size: 12px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Table */
+    .table-wrapper {
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      padding: 16px 18px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    th, td {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    th {
+      background: #eff6ff;
+      color: #1f2933;
+    }
+
+    tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    .status.available {
+      color: #16a34a;
+      font-weight: bold;
+    }
+
+    .status.issued {
+      color: #dc2626;
+      font-weight: bold;
+    }
+
+    .text-muted {
+      color: #6b7280;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 700px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <h1>College Library Management</h1>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main class="container">
+
+    <!-- TOP SECTION: Add Book + Search -->
+    <section class="top-section">
+
+      <!-- Add Book Card -->
+      <div class="card">
+        <h2>Add New Book</h2>
+        <p class="text-muted">Fill the details and click "Add Book" to insert into the list.</p>
+        <form id="bookForm">
+          <label for="bookId">Book ID</label>
+          <input type="text" id="bookId" placeholder="e.g. B101" required />
+
+          <label for="bookTitle">Title</label>
+          <input type="text" id="bookTitle" placeholder="e.g. Introduction to HTML" required />
+
+          <label for="bookAuthor">Author</label>
+          <input type="text" id="bookAuthor" placeholder="e.g. John Doe" required />
+
+          <button type="submit" class="btn">Add Book</button>
+        </form>
+      </div>
+
+      <!-- Search Card -->
+      <div class="card">
+        <h2>Search Books</h2>
+        <p class="text-muted">Search by title or author.</p>
+        <input type="text" id="searchInput" placeholder="Start typing to search..." />
+        <p class="text-muted" id="totalBooksText"></p>
+      </div>
+
+    </section>
+
+    <!-- BOOKS TABLE -->
+    <section class="table-wrapper">
+      <h2>Books List</h2>
+      <table id="booksTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows created by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <script>
+    // Initial dummy data
+    let books = [
+      { id: "B001", title: "HTML & CSS Basics", author: "Mark Smith", status: "Available" },
+      { id: "B002", title: "JavaScript Essentials", author: "Sarah Lee", status: "Issued" },
+      { id: "B003", title: "Database Management", author: "Andrew Clark", status: "Available" },
+    ];
+
+    const tableBody = document.querySelector("#booksTable tbody");
+    const bookForm = document.getElementById("bookForm");
+    const searchInput = document.getElementById("searchInput");
+    const totalBooksText = document.getElementById("totalBooksText");
+
+    // Render table based on books array + search filter
+    function renderBooks() {
+      const query = searchInput.value.toLowerCase();
+      tableBody.innerHTML = "";
+
+      const filteredBooks = books.filter(book =>
+        book.title.toLowerCase().includes(query) ||
+        book.author.toLowerCase().includes(query)
+      );
+
+      filteredBooks.forEach((book, index) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${book.id}</td>
+          <td>${book.title}</td>
+          <td>${book.author}</td>
+          <td><span class="status ${book.status === "Available" ? "available" : "issued"}">${book.status}</span></td>
+          <td>
+            <button class="btn small" onclick="toggleStatus('${book.id}')">
+              ${book.status === "Available" ? "Issue" : "Return"}
+            </button>
+            <button class="btn small secondary" onclick="deleteBook('${book.id}')">
+              Delete
+            </button>
+          </td>
+        `;
+
+        tableBody.appendChild(tr);
+      });
+
+      totalBooksText.textContent = `Total books: ${books.length} | Showing: ${filteredBooks.length}`;
+    }
+
+    // Add new book
+    bookForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const id = document.getElementById("bookId").value.trim();
+      const title = document.getElementById("bookTitle").value.trim();
+      const author = document.getElementById("bookAuthor").value.trim();
+
+      if (!id || !title || !author) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      // Check duplicate ID
+      const exists = books.some(book => book.id.toLowerCase() === id.toLowerCase());
+      if (exists) {
+        alert("Book ID already exists!");
+        return;
+      }
+
+      books.push({ id, title, author, status: "Available" });
+      bookForm.reset();
+      renderBooks();
+    });
+
+    // Toggle issue / return
+    function toggleStatus(bookId) {
+      books = books.map(book => {
+        if (book.id === bookId) {
+          book.status = book.status === "Available" ? "Issued" : "Available";
+        }
+        return book;
+      });
+      renderBooks();
+    }
+
+    // Delete book
+    function deleteBook(bookId) {
+      if (confirm("Are you sure you want to delete this book?")) {
+        books = books.filter(book => book.id !== bookId);
+        renderBooks();
+      }
+    }
+
+    // Search
+    searchInput.addEventListener("input", renderBooks);
+
+    // Initial render
+    renderBooks();
+
+    // Make functions global for inline onclick
+    window.toggleStatus = toggleStatus;
+    window.deleteBook = deleteBook;
+  </script>
+</body>
+</html>
+
