@@ -1,1 +1,888 @@
-<h1> hi, hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Library Management System | Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+  <style>
+    :root {
+      --bg-light: #f5f7fb;
+      --bg-white: #ffffff;
+      --primary: #1e4b9b;
+      --primary-soft: #e3edff;
+      --secondary: #f9a826;
+      --text-main: #1f2933;
+      --text-muted: #6b7280;
+      --border-soft: #e5e7eb;
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --radius-lg: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: var(--bg-light);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Layout */
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: var(--bg-white);
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Navbar */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.4);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a.active,
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a.active::after,
+    .nav-links a:hover::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 18px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s ease;
+    }
+
+    .btn-outline {
+      border-color: var(--border-soft);
+      background: #fff;
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-soft);
+      border-color: var(--primary-soft);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 40px 0 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      gap: 6px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      max-width: 500px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .hero-meta span::before {
+      content: "•";
+      margin-right: 6px;
+      color: var(--secondary);
+    }
+
+    .hero-search-card {
+      background: #fff;
+      padding: 14px;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-search-input {
+      flex: 1 1 220px;
+      position: relative;
+    }
+
+    .hero-search-input input {
+      width: 100%;
+      padding: 10px 12px 10px 32px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      outline: none;
+      font-size: 0.9rem;
+    }
+
+    .hero-search-input input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.1);
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      transform: translateY(-50%);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .hero-filter-select {
+      min-width: 130px;
+      padding: 9px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 0.85rem;
+      outline: none;
+      background: #fff;
+    }
+
+    .hero-illustration {
+      background: linear-gradient(145deg, #1e40af, #0f172a);
+      border-radius: 28px;
+      padding: 20px 18px;
+      color: #e5e7eb;
+      box-shadow: 0 25px 50px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-illustration::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.09);
+      top: -40px;
+      right: -60px;
+    }
+
+    .hero-ill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+    }
+
+    .hero-ill-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.7rem;
+    }
+
+    .hero-ill-main {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 18px;
+      padding: 14px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-ill-main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+    }
+
+    .hero-ill-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.7rem;
+    }
+
+    .shelf {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .book {
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(145deg, #1d4ed8, #38bdf8);
+      box-shadow: 0 6px 14px rgba(15, 23, 42, 0.5);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 0.55rem;
+      text-align: center;
+      padding: 4px;
+    }
+
+    .book:nth-child(2) {
+      background: linear-gradient(145deg, #ec4899, #f97316);
+    }
+
+    .book:nth-child(3) {
+      background: linear-gradient(145deg, #22c55e, #14b8a6);
+    }
+
+    .book::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2),
+        transparent 45%
+      );
+      opacity: 0.8;
+    }
+
+    .hero-ill-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.75rem;
+    }
+
+    .hero-ill-stat {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-ill-stat-label {
+      font-size: 0.65rem;
+      color: #9ca3af;
+    }
+
+    .hero-ill-stat-value {
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 14px 0 6px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stat-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .stat-content-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .stat-content-value {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* Features Section */
+    .features {
+      padding: 20px 0 30px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 380px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid var(--border-soft);
+      transition: 0.18s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(37, 99, 235, 0.3);
+    }
+
+    .feature-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+    }
+
+    .feature-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .feature-meta {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .feature-meta span {
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 16px 0 18px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid var(--border-soft);
+      padding-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+
+      .hero-illustration {
+        order: -1;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 1.7rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-search-card {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-filter-select {
+        width: 100%;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- HEADER / NAVBAR -->
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <div class="logo-icon">📚</div>
+            <span>Smart Library LMS</span>
+          </div>
+          <div class="nav-links">
+            <a href="#" class="active">Home</a>
+            <a href="#features">Modules</a>
+            <a href="#contact">Contact</a>
+            <a href="#support">Help</a>
+          </div>
+          <div class="nav-actions">
+            <button class="btn btn-outline">Librarian Login</button>
+            <button class="btn btn-primary">Student Login</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <!-- Left content -->
+            <div>
+              <div class="hero-tag">
+                <span>✅</span> Modern Library Management System
+              </div>
+              <h1 class="hero-title">
+                Manage your <span>Library</span> smarter, not harder.
+              </h1>
+              <p class="hero-subtitle">
+                Centralized platform to manage books, members, issues & returns, fines, and
+                digital resources seamlessly in a few clicks.
+              </p>
+
+              <div class="hero-actions">
+                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-outline">View Demo</button>
+              </div>
+
+              <div class="hero-meta">
+                <span>Real-time book availability</span>
+                <span>Role-based access for staff & students</span>
+              </div>
+
+              <!-- Quick Search Card -->
+              <div class="hero-search-card">
+                <div class="hero-search-input">
+                  <span class="search-icon">🔍</span>
+                  <input
+                    type="text"
+                    placeholder="Search by title, author, ISBN..."
+                    aria-label="Search books"
+                  />
+                </div>
+                <select class="hero-filter-select" aria-label="Filter by category">
+                  <option value="">All Categories</option>
+                  <option>Engineering</option>
+                  <option>Computer Science</option>
+                  <option>Management</option>
+                  <option>Literature</option>
+                  <option>E-Books</option>
+                </select>
+                <button class="btn btn-primary" type="button">
+                  Search
+                </button>
+              </div>
+            </div>
+
+            <!-- Right side illustration -->
+            <div class="hero-illustration" aria-hidden="true">
+              <div class="hero-ill-header">
+                <div>Today’s Snapshot</div>
+                <div class="hero-ill-badge">Auto Sync Enabled</div>
+              </div>
+
+              <div class="hero-ill-main">
+                <div class="hero-ill-main-header">
+                  <span>Live Shelf Overview</span>
+                  <span class="hero-ill-pill">Updated: 2 mins ago</span>
+                </div>
+                <div class="shelf">
+                  <div class="book">Programming</div>
+                  <div class="book">Networking</div>
+                  <div class="book">Data Science</div>
+                </div>
+                <div class="shelf">
+                  <div class="book">Novels</div>
+                  <div class="book">Journals</div>
+                  <div class="book">E-Resources</div>
+                </div>
+              </div>
+
+              <div class="hero-ill-footer">
+                <div class="hero-ill-stat">
+                  <div class="hero-ill-stat-label">Books Issued</div>
+                  <div class="hero-ill-stat-value">128</div>
+                </div>
+                <div class="hero-ill-stat">
+                  <div class="hero-ill-stat-label">Due Today</div>
+                  <div class="hero-ill-stat-value">23</div>
+                </div>
+                <div class="hero-ill-stat">
+                  <div class="hero-ill-stat-label">Active Members</div>
+                  <div class="hero-ill-stat-value">982</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATS SECTION -->
+      <section class="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">📘</div>
+              <div>
+                <div class="stat-content-title">Total Books</div>
+                <div class="stat-content-value">25,340+</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">👥</div>
+              <div>
+                <div class="stat-content-title">Registered Members</div>
+                <div class="stat-content-value">4,120</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">⏱️</div>
+              <div>
+                <div class="stat-content-title">Avg. Issue Time</div>
+                <div class="stat-content-value">10 sec</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">💻</div>
+              <div>
+                <div class="stat-content-title">Digital Resources</div>
+                <div class="stat-content-value">3,800+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES / MODULES SECTION -->
+      <section class="features" id="features">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Core Modules</h2>
+              <p class="section-subtitle">
+                Structured modules to support librarians, faculty, and students in day-to-day
+                library operations.
+              </p>
+            </div>
+            <button class="btn btn-outline">View Full Module List</button>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">📚</div>
+              <h3 class="feature-title">Book & Inventory Management</h3>
+              <p class="feature-desc">
+                Add, update, and categorize books with ISBN, barcode, and custom tags for quick
+                search and tracking.
+              </p>
+              <div class="feature-meta">
+                <span>➜</span> Add / Edit / Delete books
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔄</div>
+              <h3 class="feature-title">Issue & Return Tracking</h3>
+              <p class="feature-desc">
+                One-click book issue & return with auto-calculated due dates, reminders, and fine
+                management.
+              </p>
+              <div class="feature-meta">
+                <span>➜</span> Real-time status updates
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🧑‍🎓</div>
+              <h3 class="feature-title">Member Management</h3>
+              <p class="feature-desc">
+                Maintain student and staff profiles, borrowing history, and membership validity in a
+                single dashboard.
+              </p>
+              <div class="feature-meta">
+                <span>➜</span> Role-based access
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">📈</div>
+              <h3 class="feature-title">Reports & Analytics</h3>
+              <p class="feature-desc">
+                Generate usage reports, popular titles, overdue items, and department-wise
+                statistics instantly.
+              </p>
+              <div class="feature-meta">
+                <span>➜</span> Export to PDF / Excel
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🌐</div>
+              <h3 class="feature-title">Online Catalogue (OPAC)</h3>
+              <p class="feature-desc">
+                Allow students to search the catalogue from anywhere and place book requests
+                online.
+              </p>
+              <div class="feature-meta">
+                <span>➜</span> Student self-service portal
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-icon">🔐</div>
+              <h3 class="feature-title">Secure Access Control</h3>
+              <p class="feature-desc">
+                Secure login for admin, librarian, staff, and student with audit logs for every
+                action.
+              </p>
+              <div class="feature-meta">
+                <span>➜</span> Multi-level permissions
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            © <span id="year"></span> Smart Library Management System. All rights reserved.
+          </div>
+          <div class="footer-links">
+            <a href="#support">Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Small JS just to update year (optional) -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
